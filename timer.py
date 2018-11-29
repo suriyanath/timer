@@ -1,4 +1,5 @@
 import platform
+from tkinter.messagebox import showinfo
 
 try:
     import Tkinter as tk
@@ -152,12 +153,12 @@ class Timer(tk.Tk):
     def pause_all(self, event=None):
         for c in self.counters:
             if not c['counter'].paused:
-                c['counter'].clicked(CLICK_EVENT) 
+                c['counter'].clicked(CLICK_EVENT)
 
     def start_all(self, event=None):
         for c in self.counters:
             if c['counter'].paused:
-                c['counter'].clicked(CLICK_EVENT) 
+                c['counter'].clicked(CLICK_EVENT)
 
     def create_counter(self, event=None):
         frame =  tk.Frame(self.frame)
@@ -245,9 +246,13 @@ class Counter(object):
             label.bind('<Button-1>', self.clicked)
             label.bind('<Double-Button-1>', self.reset)
 
+    def popup(self):
+        showinfo(self.title_text.get(), "Time up!")
+
     def reset(self, event=None):
         self.paused = True
         self.time = 0
+        self.popup()
         self.text_colour.reset()
         self.refresh()
 
@@ -301,8 +306,9 @@ class Counter(object):
 
 def main():
     app = Timer()
+    app.attributes('-topmost', True)
+    app.update()
     app.create_counter()
     app.mainloop()
-    app.destroy()
 
 main()
