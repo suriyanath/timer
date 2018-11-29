@@ -14,6 +14,7 @@ Please report any issues you experience on these platforms!
 - Add multiple timers
 - Add labels to each timer
 - Simple scrolling to increase the value of each timer.
+- Notify with a pop up window
 
 ## Execution
 As simple as:
@@ -27,4 +28,3 @@ python timer.py
 
 ## TODO / Known Issues
 - Need to build in time correction (ticker might be off by a few miliseconds, and that adds up)
-- Notifications using pynotify
